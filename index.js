@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     .register('./service-worker.js')
     .then(serviceWorkerRegistration => {
       console.info('Service worker was registered.');
-    //   console.info({serviceWorkerRegistration});
+      //   console.info({serviceWorkerRegistration});
     })
     .catch(error => {
       console.error('An error occurred while registering the service worker.');
@@ -11,4 +11,12 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     });
 } else {
   console.error('Browser does not support service workers or push messages.');
+}
+
+if (
+  navigator.userAgent.indexOf('Safari') !== -1 &&
+  navigator.userAgent.indexOf('Mac') !== -1 &&
+  navigator.userAgent.indexOf('Chrome') === -1
+) {
+  document.getElementsByTagName('video').setAttribute('crossorigin', 'true');
 }
